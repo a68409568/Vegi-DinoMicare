@@ -7,7 +7,7 @@
         </body>
     <script>
         let animatL1 = "";
-        for (let i = 0; i < cars.length; i++) {
+        for (let i = 0; i < 1000; i++) {
             animatL1 = animatL1.substring(1);
         }
     </script>
