@@ -121,3 +121,105 @@ ol {
     padding: 0.5rem;
   }
 }
+
+/* update names
+/**
+ ** This section of style.css covers 
+ **
+ **/
+
+/*
+ * 
+ */
+body {
+  background: #f7f7f7;
+}
+
+/*
+ * 
+ */
+#game {
+  position: relative;
+  width: 800px;
+  height: 120px; /* 3 dinosaur heights (3*40px) */
+  border: 2px solid #333;
+  background: #fff;
+  overflow: hidden;
+  margin: 40px auto;
+}
+
+/*
+ * 
+ */
+#dino {
+  position: absolute;
+  right: 100px;
+  bottom: 40px;
+  width: 40px;
+  height: 40px;
+  background: #6c7a89;
+  border-radius: 8px;
+  transition: height 0.1s;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  font-size: 28px;
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+/*
+ * 
+ */
+.duck {
+  height: 20px !important;
+}
+
+/*
+ * 
+ */
+.obstacle {
+  position: absolute;
+  left: 0;
+  font-size: 24px;
+  color: #e26a6a;
+  font-family: monospace;
+  white-space: pre;
+  background: rgba(255,200,200,0.6);
+  border-radius: 5px;
+  padding: 0 6px;
+}
+
+/*
+ * 
+ */
+#score {
+  text-align: center;
+  font-size: 28px;
+  margin-top: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/*
+ * 
+ */
+#restart {
+  display: block;
+  margin: 20px auto;
+  font-size: 18px;
+  padding: 8px 24px;
+  background: #e26a6a;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+}
+
+/*
+ * 
+ */
+#restart:hover {
+  background: #c0392b;
+}
+*/
