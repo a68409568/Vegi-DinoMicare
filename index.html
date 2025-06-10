@@ -126,10 +126,10 @@
   
       document.addEventListener('keydown', e => {
         if (!running) return;
-        if (e.code === 'ArrowUp') jump();
-        if (e.code === 'ArrowDown') duck(true);
-        if (e.code === 'ArrowLeft') moveDinoVert(1);
-        if (e.code === 'ArrowRight') moveDinoVert(-1);
+      //  if (e.code === 'ArrowUp') jump();
+      //  if (e.code === 'ArrowDown') duck(true);
+        if (e.code === 'ArrowUp') moveDinoVert(1);
+        if (e.code === 'ArrowDown') moveDinoVert(-1);
       });
       document.addEventListener('keyup', e => {
         if (e.code === 'ArrowDown') duck(false);
