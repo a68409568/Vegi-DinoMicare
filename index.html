@@ -19,8 +19,8 @@
       <h2>Let Us Begin</h2>
       <ol>
         <li>About @README <a href="URL">https://github.com/a68409568/Vegi-DinoMicare.git</a></li>
-        <li>Press Up Arrow to Jump</li>
-        <li>Press Down Arrow to Duck</li>
+        <li>Press Up Arrow or 'W' to Jump</li>
+        <li>Press Down Arrow or 'S' to Duck</li>
       </ol>
     </section>
     <section id="dino-game">
@@ -126,7 +126,9 @@
       //  if (e.code === 'ArrowUp') jump();
       //  if (e.code === 'ArrowDown') duck(true);
         if (e.code === 'ArrowUp') moveDinoVert(1);
+        if (e.code === 'w') moveDinoVert(1);
         if (e.code === 'ArrowDown') moveDinoVert(-1);
+        if (e.code === 's') moveDinoVert(-1);
       });
       document.addEventListener('keyup', e => {
         if (e.code === 'ArrowDown') duck(false);
