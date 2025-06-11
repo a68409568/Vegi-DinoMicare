@@ -126,9 +126,9 @@
       //  if (e.code === 'ArrowUp') jump();
       //  if (e.code === 'ArrowDown') duck(true);
         if (e.code === 'ArrowUp') moveDinoVert(1);
-        if (e.code === 'w') moveDinoVert(1);
+        if (event.key === 'w') moveDinoVert(1);
         if (e.code === 'ArrowDown') moveDinoVert(-1);
-        if (e.code === 's') moveDinoVert(-1);
+        if (event.key === 's') moveDinoVert(-1);
       });
       document.addEventListener('keyup', e => {
         if (e.code === 'ArrowDown') duck(false);
