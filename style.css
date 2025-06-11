@@ -127,14 +127,14 @@ ol {
  ** This section of style.css covers 
  **
  **/
-/-----------------------------------------------
+//-----------------------------------------------
 /*
  * 
  */
 #game {
   font-size: 1.25em;
   color: #c8102e;
-  background: #fff;
+  background: rgba(255,255,255,0.97); /* White, slightly translucent */
   border-radius: 8px;
   padding: 1em 0.5em;
   margin-top: 1em;
