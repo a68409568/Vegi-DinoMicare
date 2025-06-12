@@ -67,9 +67,8 @@ footer {
   justify-content: center;
 }
 
-/* Thick white border */
 .dino-placeholder.blue-border {
-  border: 8px solid #fff;
+  border: 8px solid #073c91;
   box-sizing: border-box;
 }
 
@@ -108,7 +107,7 @@ ol {
   border-radius: 8px;
   padding: 1em 0.5em;
   margin-top: 1em;
-  border: none;
+  border: 1px solid #073c91;
   min-height: 64px;
   display: flex;
   align-items: flex-end;
