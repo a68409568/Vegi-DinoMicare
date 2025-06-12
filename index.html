@@ -11,265 +11,236 @@
     <p>And How Australia Can Help Fill Them.</p>
   </header>
   <main>
-
-    /*
-     * Overview of what the game hopes to accomplish
-     * <br> acts with the samre functunality as \n
-     */
+    <!-- Overview and instructions -->
     <section>
       <h2>Abstract</h2>
-      <p>What are the needs of the city of Seattle? What are the strengths of the state of Australia? 
-          <br> How can we connect the strengths of Australia to improve the needs of the city of Seattle? </p>
+      <p>
+        What are the needs of the city of Seattle? What are the strengths of the
+        state of Australia? <br>
+          How can we connect the strengths of Australia to improve the needs of
+          the city of Seattle?
+      </p>
     </section>
-
-    /*
-     * Specifies the permitted inputs
-     * Using 'W' or 'S' is advised as does not cause page scroll
-     */
     <section>
       <h2>Let Us Begin</h2>
       <ol>
-        <li>About @README <a href="URL">https://github.com/a68409568/Vegi-DinoMicare</a></li>
+        <li>
+          About @README
+          <a href="URL">https://github.com/a68409568/Vegi-DinoMicare</a>
+        </li>
         <li>Press '↑' or 'W' to Jump</li>
         <li>Press '↓' or 'S' to Duck</li>
       </ol>
     </section>
-    <section id="dino-game"> //References style.css
-      <h2>In All Seriousness Though</h2>
-      <div class="dino-placeholder">
-        <p>🐯 Are Cuter</p>
+    <!-- Game Box Set Up -->
+    <section id="dino-game">
+      <h2>Ready. Set. Begin. (Or Play if thoust already beguneth)</h2>
+      <div class="dino-placeholder wide blue-border">
+        <div id="game">
+          <div id="dino">🐨</div>
+        </div>
+        <div id="score">Score: 0</div>
+        <button id="restart">Restart</button>
       </div>
     </section>
-
-<section id="dino-game"> //References style.css
   </main>
-  <div id="game">
-    <div id="dino">🐨</div>
-  </div>
-  <div id="score">Score: 0</div>
-  <button id="restart">Restart</button>
-    <script>
-      const game = document.getElementById('game');
-      const dino = document.getElementById('dino');
-      const scoreElem = document.getElementById('score');
-      const restartBtn = document.getElementById('restart');
-      let dinoY = 0, dinoVelY = 0, gravity = 0.8, jumping = false, ducking = false;
-      let score = 0, running = true;
-  
-      const dinoHeight = 40;
-      const dinoWidth = 40; // width = height
-      const gameHeight = dinoHeight * 3; // 3 dinosaur heights
-  
-      // For optional vertical movement with up/down
-      let dinoVPos = 40; // bottom in px
-      const dinoStep = dinoHeight;
-      let obstacleInterval;
-      let gameLoopId;
-  
-      //placeholders for Australia medicare facts/statements
-      const australiaStatements = [
-        "placeholder Australia",
-        "placeholder Australia",
-        "placeholder Australia",
-        "placeholder Australia"
-      ];
-      let statementsUsed = [];
-      let statementIndex = 0;
-  
-      // Shuffle function for statements
-      function shuffle(array) {
-        let currentIndex = array.length, randomIndex;
-        while (currentIndex !== 0) {
-          randomIndex = Math.floor(Math.random() * currentIndex);
-          currentIndex--;
-          [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
-        }
-        return array;
-      }
-      // On restart, shuffle the list
-      function resetStatements() {
-        statementsUsed = [];
-        statementIndex = 0;
-        shuffle(australiaStatements);
-      }
-  
-      function resetGameVars() {
-        dinoY = 0;
-        dinoVelY = 0;
-        jumping = false;
-        ducking = false;
-        score = 0;
-        running = true;
-        dinoVPos = dinoHeight;
-        dino.style.bottom = dinoVPos + 'px';
-        dino.classList.remove('duck');
-        dino.style.transform = '';
-        scoreElem.textContent = "Score: 0";
-        resetStatements();
-      }
-  
-      function removeAllObstacles() {
-        document.querySelectorAll('.obstacle').forEach(o => o.remove());
-      }
-  
-      function jump() {
-        if (!jumping && !ducking) {
-          dinoVelY = 14;
-          jumping = true;
-        }
-      }
-  
-      function duck(state) {
-        ducking = state;
-        dino.classList.toggle('duck', ducking);
-      }
-  
-      function moveDinoVert(dir) {
-        let newBottom = dinoVPos + dir * dinoStep;
-        if (newBottom >= 0 && newBottom <= gameHeight - dinoHeight) {
-          dinoVPos = newBottom;
-          dino.style.bottom = dinoVPos + 'px';
-        }
-      }
-  
-      document.addEventListener('keydown', e => {
-        if (!running) return;
-      //  if (e.code === 'ArrowUp') jump();
-      //  if (e.code === 'ArrowDown') duck(true);
-        if (e.code === 'ArrowUp') moveDinoVert(1);
-        if (event.key === 'w') moveDinoVert(1);
-        if (e.code === 'ArrowDown') moveDinoVert(-1);
-        if (event.key === 's') moveDinoVert(-1);
-      });
-      document.addEventListener('keyup', e => {
-        if (e.code === 'ArrowDown') duck(false);
-      });
-  
-      function updateDino() {
-        if (jumping) {
-          dinoY += dinoVelY;
-          dinoVelY -= gravity;
-          if (dinoY <= 0) {
-            dinoY = 0;
-            jumping = false;
-          }
-          dino.style.transform = `translateY(${-dinoY}px)`;
-        }
-      }
-  
-      function getNextStatement() {
-        // Exhaust statements, then no more obstacles
-        if (statementIndex >= australiaStatements.length) return null;
-        const text = australiaStatements[statementIndex];
-        statementIndex++;
-        return text;
-      }
-  
-      function createObstacle() {
-        if (!running) return;
-        const nextText = getNextStatement();
-        if (!nextText) return; // No more obstacles
-        const obs = document.createElement('div');
-        obs.className = 'obstacle';
-        obs.innerText = nextText;
-        obs.style.left = '0px';
-        // Random vertical position, fit exactly within 3 dinosaur heights
-        const possibleBottoms = [0, dinoHeight, dinoHeight * 2];
-        let obsBottom = possibleBottoms[Math.floor(Math.random() * possibleBottoms.length)];
-        obs.style.bottom = obsBottom + 'px';
-        game.appendChild(obs);
-        obs.dataset.bottom = obsBottom;
-  
-        let obsPos = 0;
-  
-        function moveObs() {
-          if (!running) return obs.remove();
-          obsPos += 2; // SLOWER SPEED for readability!
-          obs.style.left = obsPos + 'px';
-          // Collision detection
-          let dinoRect = dino.getBoundingClientRect();
-          let obsRect = obs.getBoundingClientRect();
-          if (
-            obsRect.right > dinoRect.left &&
-            obsRect.left < dinoRect.right &&
-            obsRect.bottom > dinoRect.top &&
-            obsRect.top < dinoRect.bottom
-          ) {
-            // Only collide if not jumping over or ducking under
-            if (
-              (!jumping && !ducking) ||
-              (jumping && obsBottom > dinoVPos + 30) || // jumped but not high enough
-              (ducking && obsBottom < dinoVPos + 10)    // ducked but not low enough
-            ) {
-              running = false;
-              scoreElem.textContent = `Game Over! Final Score: ${score}`;
-              obs.remove();
-              return;
-            }
-          }
-          if (obsPos > game.offsetWidth) {
-            obs.remove();
-            score++;
-            scoreElem.textContent = `Score: ${score}`;
-          } else {
-            requestAnimationFrame(moveObs);
-          }
-        }
-        moveObs();
-      }
-  
-      function gameLoop() {
-        if (!running) return;
-        updateDino();
-        gameLoopId = requestAnimationFrame(gameLoop);
-      }
-  
-      function startObstacles() {
-        obstacleInterval = setInterval(() => {
-          if (!running) return;
-          // Only create obstacle if we have statements left
-          if (statementIndex < australiaStatements.length) {
-            createObstacle();
-          }
-        }, 2300); // SLOWER for readability (~2.3s per statement)
-      }
-  
-      function stopObstacles() {
-        clearInterval(obstacleInterval);
-      }
-  
-      function startGame() {
-        resetGameVars();
-        removeAllObstacles();
-        stopObstacles();
-        startObstacles();
-        gameLoop();
-      }
-  
-      restartBtn.addEventListener('click', () => {
-        running = false;
-        stopObstacles();
-        cancelAnimationFrame(gameLoopId);
-        setTimeout(() => { // Allow any ongoing collision checks to finish
-          startGame();
-        }, 50);
-      });
-  
-      // Initial setup for game area height and dino position
-      game.style.height = (dinoHeight * 5) + 'px';
-      dino.style.bottom = dinoHeight + 'px';
-  
-      // Start game
-      startGame();
-    </script>
-  </section>
   <footer>
     <p>&copy; 2025 Vegi Dinomicare</p>
   </footer>
+
+  <-- 
+    Begin game code
+    -->
+  <script>
+    // Creates the references for objects used in the game
+    const game = document.getElementById('game');
+    const dino = document.getElementById('dino');
+    const scoreElem = document.getElementById('score');
+    const restartBtn = document.getElementById('restart');
+
+    // Game state and constants
+    let dinoY = 0, dinoVelY = 0, gravity = 0.9, jumping = false, ducking = false;
+    let score = 0, running = true, obstacles = [], gameLoopId;
+    const dinoHeight = 40, dinoStep = dinoHeight, dinoJumpVel = 14, groundY = dinoHeight;
+    const gameWidth = 900, gameHeight = 200; // Wide game area for horizontal coverage
+    const dinoRightMargin = 70; // Distance from right edge for koala
+    const obstacleSpeed = 2, obstacleFreq = 2300;
+
+    // Obstacle text options
+    const australiaStatements = [
+      "placeholder australia", "medicare", "universal care", "bulk billing"
+    ];
+    let statementIndex = 0;
+
+    // Set up the game box size
+    game.style.width = gameWidth + "px";
+    game.style.height = gameHeight + "px";
+    // Position koala on the right side
+    dino.style.right = dinoRightMargin + "px";
+    dino.style.left = "auto";
+    dino.style.bottom = groundY + "px";
+    dino.style.position = "absolute";
+
+    // Reset all game variables and UI
+    function resetGameVars() {
+      dinoY = 0;
+      dinoVelY = 0;
+      jumping = false;
+      ducking = false;
+      score = 0;
+      running = true;
+      statementIndex = 0;
+      dino.style.bottom = groundY + 'px';
+      dino.classList.remove('duck');
+      dino.style.transform = '';
+      scoreElem.textContent = "Score: 0";
+    }
+
+    // Remove all current obstacles
+    function removeAllObstacles() {
+      document.querySelectorAll('.obstacle').forEach(o => o.remove());
+    }
+
+    // Handle jumping
+    function jump() {
+      if (!jumping && !ducking) {
+        dinoVelY = dinoJumpVel;
+        jumping = true;
+      }
+    }
+
+    // Handle ducking
+    function duck(state) {
+      ducking = state;
+      dino.classList.toggle('duck', ducking);
+    }
+
+    // Move koala vertically with up/down or W/S
+    function moveDinoVert(dir) {
+      let curr = parseInt(dino.style.bottom) || groundY;
+      let newBottom = curr + dir * dinoStep;
+      if (newBottom >= 0 && newBottom <= gameHeight - dinoHeight) {
+        dino.style.bottom = newBottom + 'px';
+      }
+    }
+
+    // Keyboard controls into vertical movement
+    document.addEventListener('keydown', e => {
+      if (!running) return;
+      if (e.code === 'ArrowUp' || e.key === 'w' || e.key === 'W') moveDinoVert(1);
+      if (e.code === 'ArrowDown' || e.key === 's' || e.key === 'S') moveDinoVert(-1);
+    });
+
+    // koala vertical movement
+    function updateDino() {
+      if (jumping) {
+        dinoY += dinoVelY;
+        dinoVelY -= gravity;
+        if (dinoY <= 0) {
+          dinoY = 0;
+          jumping = false;
+        }
+        dino.style.transform = `translateY(${-dinoY}px)`;
+      }
+    }
+
+    // Get next statement for obstacle w/ final return if no more
+    function getNextStatement() {
+      if (statementIndex >= australiaStatements.length) return null;
+      const text = australiaStatements[statementIndex];
+      statementIndex++;
+      return text;
+    }
+
+    // Create an 'obstacle' as text that slides left-to-right
+    function createObstacle() {
+      if (!running) return;
+      const nextText = getNextStatement();
+      if (!nextText) return;
+      const obs = document.createElement('div');
+      obs.className = 'obstacle';
+      obs.innerText = nextText;
+      obs.style.left = "0px";
+      // Random vertical position, 3 possible
+      const possibleBottoms = [0, dinoHeight, dinoHeight * 2];
+      let obsBottom = possibleBottoms[Math.floor(Math.random() * possibleBottoms.length)];
+      obs.style.bottom = obsBottom + 'px';
+      game.appendChild(obs);
+
+      let obsPos = 0;
+      function moveObs() {
+        if (!running) return obs.remove();
+        obsPos += obstacleSpeed;
+        obs.style.left = obsPos + 'px';
+
+        // Collision detection
+        let dinoRect = dino.getBoundingClientRect();
+        let obsRect = obs.getBoundingClientRect();
+        if (
+          obsRect.right > dinoRect.left &&
+          obsRect.left < dinoRect.right &&
+          obsRect.bottom > dinoRect.top &&
+          obsRect.top < dinoRect.bottom
+        ) {
+          running = false;
+          scoreElem.textContent = `Game Over! Final Score: ${score}`;
+          obs.remove();
+          return;
+        }
+
+        if (obsPos > gameWidth - dinoRightMargin) {
+          game.removeChild(obs);
+          score++;
+          scoreElem.textContent = `Score: ${score}`;
+        } else {
+          requestAnimationFrame(moveObs);
+        }
+      }
+      moveObs();
+    }
+
+    // Main game loop
+    function gameLoop() {
+      if (!running) return;
+      updateDino();
+      gameLoopId = requestAnimationFrame(gameLoop);
+    }
+
+    // Start obstacles generation
+    let obstacleInterval;
+    function startObstacles() {
+      obstacleInterval = setInterval(() => {
+        if (!running) return;
+        if (statementIndex < australiaStatements.length) {
+          createObstacle();
+        }
+      }, obstacleFreq);
+    }
+    function stopObstacles() {
+      clearInterval(obstacleInterval);
+    }
+
+    // Start or restart the game
+    function startGame() {
+      resetGameVars();
+      removeAllObstacles();
+      stopObstacles();
+      startObstacles();
+      gameLoop();
+    }
+
+    // Restart button
+    restartBtn.addEventListener('click', () => {
+      running = false;
+      stopObstacles();
+      cancelAnimationFrame(gameLoopId);
+      setTimeout(() => {
+        startGame();
+      }, 50);
+    });
+
+    // Initial setup and start
+    startGame();
+  </script>
 </body>
 </html>
-
-  /*
-   * 
-   * 
-   */
