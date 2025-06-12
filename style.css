@@ -101,6 +101,7 @@ ol {
 
 /** Game graphics **/
 #game {
+  position: relative;
   font-size: 1.25em;
   color: #c8102e;
   background: #fff;
