@@ -24,6 +24,13 @@ body {
 }
 
 /*
+ * If need for spacing grows apparent
+ */
+#spacing {
+  margin-bottom: 70px;
+}
+
+/*
  * Stores game at high-level
  */
 #host-box {
