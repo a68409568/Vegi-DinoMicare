@@ -182,7 +182,7 @@
       function createObstacle() {
         if (!running) return;
         const nextText = getNextStatement();
-        if (!nextText) return; // No more obstacles
+        if (!nextText) return; // Complete Objective
         const obs = document.createElement('div');
         obs.className = 'obstacle';
         obs.innerText = nextText;
@@ -245,7 +245,7 @@
           if (statementIndex < australiaStatements.length) {
             createObstacle();
           }
-        }, 500); // Adjusts Display Rate                         *!*
+        }, 2000); // Adjusts Display Rate                         *!*
       }
   
       function stopObstacles() {
