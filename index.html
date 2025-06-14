@@ -199,7 +199,7 @@
   
         function moveObs() {
           if (!running) return obs.remove();
-          obsPos += 0.5; // Adjusts Speed-maintain positive direction              *!*
+          obsPos += 0.9; // Adjusts Speed-maintain positive direction              *!*
           obs.style.left = obsPos + 'px';
           // Collision detection
           let dinoRect = dino.getBoundingClientRect();
