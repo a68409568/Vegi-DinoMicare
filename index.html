@@ -58,13 +58,17 @@
 
   <!-- Begin game code-->
   <script> 
+    //Pre-function initialisation
       const game = document.getElementById('game');
       const dino = document.getElementById('dino');
       const scoreElem = document.getElementById('score');
       const restartBtn = document.getElementById('restart');
       let dinoY = 0, dinoVelY = 0, gravity = 0.8, jumping = false, ducking = false;
       let score = 0, running = true;
-  
+     // const lanes = [40, 100, 160, 220, 280]; 
+      // Lanes created for the sake of not spawning overlay
+   //   let activeLanes = []; 
+      // tracks active lanes
       const dinoHeight = 40;
       const dinoWidth = 40; // width = height
       const gameHeight = dinoHeight * 3; // 3 dinosaur heights
@@ -173,7 +177,8 @@
         statementIndex++;
         return text;
       }
-  
+
+      //Creates the sliding texts
       function createObstacle() {
         if (!running) return;
         const nextText = getNextStatement();
@@ -181,7 +186,7 @@
         const obs = document.createElement('div');
         obs.className = 'obstacle';
         obs.innerText = nextText;
-        obs.style.left = '-300px';   //Adjusts obstacle origin location
+        obs.style.left = '300px';   //Adjusts obstacle origin location              *!*
         // Random vertical position, fit exactly within 3 dinosaur heights
         const possibleBottoms = [0, dinoHeight, dinoHeight * 2];
         let obsBottom = possibleBottoms[Math.floor(Math.random() * possibleBottoms.length)];
