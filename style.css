@@ -121,7 +121,7 @@ body {
   font-size: 18px;
   padding: 8px 24px;
   background: #e26a6a;
-  color: #fff;
+  color: #42f5e0;
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -129,7 +129,7 @@ body {
 }
 
 /*
- * 
+ * Click function
  */
 #restart:hover {
   background: #c0392b;
