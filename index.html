@@ -187,7 +187,7 @@
         const obs = document.createElement('div');
         obs.className = 'obstacle';
         obs.innerText = nextText;
-        obs.style.left = '700px';   //Adjusts obstacle origin location              *!*
+        obs.style.left = '-700px';   //Adjusts obstacle origin location              *!*
         // Random vertical position, fit exactly within 3 dinosaur heights
         const possibleBottoms = [0, dinoHeight, dinoHeight * 2];
         let obsBottom = possibleBottoms[Math.floor(Math.random() * possibleBottoms.length)];
