@@ -39,7 +39,7 @@
     
     <!-- Game Box Set Up -->
     <section id="host-box">
-      <h2>Ready. Set. Begin. (Or Play if thoust already beguneth)</h2>
+      <h2>Ready. Set. Begin. (Or Play if thoust already beguneth) Give it a sec (each dif leng)</h2>
       <div class="dino-placeholder wide blue-border">
         <div id="game">
           <div id="dino">🐨</div>
@@ -190,7 +190,7 @@
         const obs = document.createElement('div');
         obs.className = 'obstacle';
         obs.innerText = nextText;
-        obs.style.left = '-1300px';   //Adjusts obstacle origin location              *!*
+        obs.style.left = '-1500px';   //Adjusts obstacle origin location              *!*
         // Random vertical position, fit exactly within 3 dinosaur heights
         const possibleBottoms = [0, dinoHeight, dinoHeight * 2];
         let obsBottom = possibleBottoms[Math.floor(Math.random() * possibleBottoms.length)];
