@@ -44,7 +44,7 @@
         <div id="game">
           <div id="dino">🐨</div>
         </div>
-        <div id="score">Score: 0</div>
+        <!--<div id="score">Score: 0</div>-->
         <button id="restart">Restart</button>
       </div>
     </section>
@@ -84,7 +84,8 @@
         "Australia encourages private insurance through tax breaks for private insurance individuals who make over $90,000 a year.",
         "At risk persons are automatically granted assistance in that area.",
         "Treats health as a basic human right.",
-        ""
+        "Strengthened relationships between public hospitals, other public agencies, and the people.",
+        "Public education fees for doctors is subsidized by the government—thus creating a less exclusive field."
       ];
       let statementsUsed = [];
       let statementIndex = 0;
@@ -111,13 +112,13 @@
         dinoVelY = 0;
         jumping = false;
         ducking = false;
-        score = 0;
+       //score = 0;
         running = true;
         dinoVPos = dinoHeight;
         dino.style.bottom = dinoVPos + 'px';
         dino.classList.remove('duck');
         dino.style.transform = '';
-        scoreElem.textContent = "Score: 0";
+      //  scoreElem.textContent = "Score: 0";
         resetStatements();
       }
   
@@ -217,15 +218,15 @@
               (ducking && obsBottom < dinoVPos + 10)    // ducked but not low enough
             ) {
               running = false;
-              scoreElem.textContent = `Game Over! Final Score: ${score}`;
+             // scoreElem.textContent = `Game Over! Final Score: ${score}`;
               obs.remove();
               return;
             }
           }
           if (obsPos > game.offsetWidth) {
             obs.remove();
-            score++;
-            scoreElem.textContent = `Score: ${score}`;
+          //  score++;
+          //  scoreElem.textContent = `Score: ${score}`;
           } else {
             requestAnimationFrame(moveObs);
           }
