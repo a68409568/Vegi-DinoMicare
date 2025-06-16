@@ -1,6 +1,6 @@
 Created for a school project.
 Had to show a picture of the cutest baby animal.
-That's how the teacher knows I actually built this.
+Gotta give it to a tiger cub.
 
 The question is: what are the needs for Seattle? What is an area in which Seattle struggles?
 Meanwhile, all students were assigned focus countries to study, mine being Sudan and Australia.
