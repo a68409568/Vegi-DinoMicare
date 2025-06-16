@@ -190,7 +190,7 @@
         const obs = document.createElement('div');
         obs.className = 'obstacle';
         obs.innerText = nextText;
-        obs.style.left = '-1500px';   //Adjusts obstacle origin location              *!*
+        obs.style.left = '-1700px';   //Adjusts obstacle origin location              *!*
         // Random vertical position, fit exactly within 3 dinosaur heights
         const possibleBottoms = [0, dinoHeight, dinoHeight * 2];
         let obsBottom = possibleBottoms[Math.floor(Math.random() * possibleBottoms.length)];
@@ -202,7 +202,7 @@
   
         function moveObs() {
           if (!running) return obs.remove();
-          obsPos += 0.9; // Adjusts Speed-maintain positive direction              *!*
+          obsPos += 0.7; // Adjusts Speed-maintain positive direction              *!*
           obs.style.left = obsPos + 'px';
           // Collision detection
           let dinoRect = dino.getBoundingClientRect();
