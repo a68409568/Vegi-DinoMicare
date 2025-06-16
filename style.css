@@ -49,7 +49,7 @@ body {
 }
 
 /*
- * 
+ * Stores the game
  */
 #game {
   position: relative;
@@ -62,7 +62,7 @@ body {
 }
 
 /*
- * 
+ * Housing shelf
  */
 #dino {
   position: absolute;
@@ -82,14 +82,14 @@ body {
 }
 
 /*
- * 
+ * void
  */
 .duck {
   height: 20px !important;
 }
 
 /*
- * 
+ * houses text
  */
 .obstacle {
   position: absolute;
@@ -104,7 +104,7 @@ body {
 }
 
 /*
- * 
+ * redacted
  */
 #score {
   text-align: center;
@@ -114,7 +114,7 @@ body {
 }
 
 /*
- * 
+ * button set
  */
 #restart {
   display: block;
